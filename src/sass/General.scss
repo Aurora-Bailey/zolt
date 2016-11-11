@@ -1,0 +1,55 @@
+/* SASS imports*/
+@import "Variables";
+@import "Mixins";
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  line-height: inherit;
+  background-color: $base;
+  color: $base-alt;
+  position: relative;
+  overflow: hidden;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+
+  background-color: $base-alt;
+  color: $base;
+}
+
+a, a:link, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  color: $primary;
+}
+
+.slide-fade-enter-active {
+  transition: all .2s ease;
+  transition-delay: .2s;
+}
+.slide-fade-leave-active {
+  transition: all .2s ease;
+}
+.slide-fade-enter, .slide-fade-leave-active {
+  margin-top: -0.5vh;
+  opacity: 0;
+}
