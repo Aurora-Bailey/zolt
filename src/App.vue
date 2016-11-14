@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <button v-on:click="$root.page.state = 'home'">Home</button>
-    <button v-on:click="$root.page.state = 'three'">Three</button>
+    <button v-on:click="$root.page.state = 'playing'">Playing</button>
     <home v-if="$root.page.state === 'home'"></home>
-    <three v-if="$root.page.state === 'three'"></three>
+    <playing v-if="$root.page.state === 'playing'"></playing>
   </div>
 </template>
 
@@ -11,13 +11,13 @@
 /* Components */
 // pages
 import Home from './pages/Home'
-import Three from './pages/Three'
+import Playing from './pages/Playing'
 
 export default {
   name: 'app',
   components: {
     Home,
-    Three
+    Playing
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
-  <div class="three" v-bind:class="{inactive: !$root.mouseLock}">
+  <div class="playing" v-bind:class="{inactive: !$root.mouseLock}">
     <div class="click_to_continue" v-on:click="LockMouse()"><div class="center">Click here to continue...</div></div>
-    <div id="three_canvas"></div>
+    <div id="playing_canvas"></div>
   </div>
 </template>
 
@@ -11,14 +11,14 @@
   import Input from '../game/Input'
 
   export default {
-    name: 'three',
+    name: 'playing',
     methods: {
       LockMouse: function () {
         Input.lockPointer()
       }
     },
     mounted: function () {
-      document.getElementById('three_canvas').appendChild(Renderer.GetCanvas())
+      document.getElementById('playing_canvas').appendChild(Renderer.GetCanvas())
     }
   }
 </script>
@@ -29,8 +29,8 @@
   @import "../sass/variables";
   @import "../sass/mixins";
 
-  .three {
-    #three_canvas {
+  .playing {
+    #playing_canvas {
       // render window styles
     }
     .click_to_continue {
@@ -40,7 +40,7 @@
 
   /* Pointer is not locked */
   .inactive {
-    #three_canvas {
+    #playing_canvas {
       filter: blur(5px) sepia(100%);
     }
     .click_to_continue {
