@@ -8,13 +8,13 @@
 <script>
   /* Modules */
   import Renderer from '../game/Renderer'
-  import MouseLock from '../modules/MouseLock'
+  import Input from '../modules/Input'
 
   export default {
     name: 'three',
     methods: {
       LockMouse: function () {
-        MouseLock.lock()
+        Input.lockPointer()
       }
     },
     mounted: function () {
