@@ -21,7 +21,6 @@
       var renderWidth = 1920
       var renderHeight = 1080
       var scene, camera, renderer
-      let cameraRotation = 0
 
       scene = new THREE.Scene()
       camera = new THREE.PerspectiveCamera(30, renderWidth / renderHeight, 1, 10000)
