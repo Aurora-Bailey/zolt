@@ -26,6 +26,7 @@ let canvas = document.createElement('canvas')
 canvas.id = 'mouse_lock_canvas'
 document.getElementById('append').appendChild(canvas)
 canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock
+if (typeof canvas.requestPointerLock === 'undefined') window.alert('Update your browser!')
 document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock
 
 document.addEventListener('pointerlockchange', lockChangeAlert, false)
