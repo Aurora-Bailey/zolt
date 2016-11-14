@@ -26,7 +26,7 @@ function lockError (e) {
 }
 
 function updatePosition (e) {
-  Data.input.rotation -= e.movementX / 200
+  Data.input.rotation = (Data.input.rotation - (e.movementX / 200)) % (Math.PI * 2)
 }
 
 function lock () {
