@@ -1,5 +1,5 @@
 <template>
-  <div class="three" v-bind:class="{inactive: !$root.input.mouseLock}">
+  <div class="three" v-bind:class="{inactive: !$root.mouseLock}">
     <div class="click_to_continue" v-on:click="LockMouse()"><div class="center">Click here to continue...</div></div>
     <div id="three_canvas"></div>
   </div>
