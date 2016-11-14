@@ -1,5 +1,5 @@
-/* Data controlled by Vue.js used as a global app state. Can be accessed from anywhere, changes to Data.js will update in Vue.js real time.  */
-var Data = {
+/* This is used to control the game state */
+var State = {
   version: {
     compatible: 'GSE4H65',
     micro: 'v001'
@@ -31,4 +31,4 @@ var Data = {
   }
 }
 
-export default Data
+export default State

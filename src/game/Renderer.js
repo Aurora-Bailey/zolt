@@ -1,7 +1,7 @@
 /* This is the rendering portion of the game */
 /* Modules */
 var THREE = require('three')
-import Data from '../modules/Data'
+import State from './State'
 
 var renderWidth = 1920
 var renderHeight = 1080
@@ -51,34 +51,34 @@ let alpha = 0
 var animate = () => {
   window.requestAnimationFrame(animate)
   /* Rotate camera around camera point
-   camera.rotation.z = Data.input.rotation
-   camera.rotation.y = Math.sin(Data.input.rotation) * (Math.PI / 8)
-   camera.rotation.x = Math.cos(Data.input.rotation) * (Math.PI / 8)
+   camera.rotation.z = State.input.rotation
+   camera.rotation.y = Math.sin(State.input.rotation) * (Math.PI / 8)
+   camera.rotation.x = Math.cos(State.input.rotation) * (Math.PI / 8)
    */
 
   /* User Input */
-  if (Data.input.w) camera.position.z += 5
-  if (Data.input.s) camera.position.z -= 5
-  if (Data.input.right) {
-    player.position.x -= 5 * Math.sin(Data.input.rotation)
-    player.position.y += 5 * Math.cos(Data.input.rotation)
+  if (State.input.w) camera.position.z += 5
+  if (State.input.s) camera.position.z -= 5
+  if (State.input.right) {
+    player.position.x -= 5 * Math.sin(State.input.rotation)
+    player.position.y += 5 * Math.cos(State.input.rotation)
   }
-  if (Data.input.left) {
-    player.position.x += 5 * Math.sin(Data.input.rotation)
-    player.position.y -= 5 * Math.cos(Data.input.rotation)
+  if (State.input.left) {
+    player.position.x += 5 * Math.sin(State.input.rotation)
+    player.position.y -= 5 * Math.cos(State.input.rotation)
   }
-  if (Data.input.up) {
-    player.position.y -= 5 * Math.sin(Data.input.rotation)
-    player.position.x -= 5 * Math.cos(Data.input.rotation)
+  if (State.input.up) {
+    player.position.y -= 5 * Math.sin(State.input.rotation)
+    player.position.x -= 5 * Math.cos(State.input.rotation)
   }
-  if (Data.input.down) {
-    player.position.y += 5 * Math.sin(Data.input.rotation)
-    player.position.x += 5 * Math.cos(Data.input.rotation)
+  if (State.input.down) {
+    player.position.y += 5 * Math.sin(State.input.rotation)
+    player.position.x += 5 * Math.cos(State.input.rotation)
   }
 
   /* Rotate camera around player */
-  camera.position.x = player.position.x + (Math.cos(Data.input.rotation) * 1250)
-  camera.position.y = player.position.y + (Math.sin(Data.input.rotation) * 1250)
+  camera.position.x = player.position.x + (Math.cos(State.input.rotation) * 1250)
+  camera.position.y = player.position.y + (Math.sin(State.input.rotation) * 1250)
   camera.lookAt(player.position)
 
   /* Dytamic light */

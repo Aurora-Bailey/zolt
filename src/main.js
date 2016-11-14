@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App'
-import Data from './modules/Data'
-import Input from './modules/Input'
+import VueData from './modules/VueData'
+import Game from './game/Game'
 
 /* eslint-disable no-new */
 new Vue({
@@ -9,6 +9,10 @@ new Vue({
   template: '<App/>',
   components: { App },
   data () {
-    return Data // DATA objects are now native
+    return VueData // DATA objects are now native
+  },
+  mounted: function () {
+    this.$root.page.state = 'home'
+    Game.start()
   }
 })

@@ -8,7 +8,7 @@
 <script>
   /* Modules */
   import Renderer from '../game/Renderer'
-  import Input from '../modules/Input'
+  import Input from '../game/Input'
 
   export default {
     name: 'three',

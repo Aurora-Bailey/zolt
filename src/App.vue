@@ -18,9 +18,6 @@ export default {
   components: {
     Home,
     Three
-  },
-  mounted: function () {
-    this.$root.page.state = 'home'
   }
 }
 </script>
