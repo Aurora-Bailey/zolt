@@ -1,3 +1,4 @@
+/* Data controlled by Vue.js used as a global app state. Can be accessed from anywhere, changes to Data.js will update in Vue.js real time.  */
 var Data = {
   version: {
     compatible: 'GSE4H65',

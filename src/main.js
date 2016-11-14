@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App'
 import Data from './modules/Data'
+import Input from './modules/Input'
 
 /* eslint-disable no-new */
 new Vue({

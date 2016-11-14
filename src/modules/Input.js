@@ -1,3 +1,4 @@
+/* Push input events to Data.js for global access */
 import Data from './Data'
 
 /* General key bindings */

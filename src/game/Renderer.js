@@ -1,3 +1,4 @@
+/* This is the rendering portion of the game */
 /* Modules */
 var THREE = require('three')
 import Data from '../modules/Data'
