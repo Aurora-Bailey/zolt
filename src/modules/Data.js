@@ -24,7 +24,9 @@ var Data = {
     right: false,
     down: false,
     w: false,
-    s: false
+    s: false,
+    mouseLock: false,
+    rotation: 0
   }
 }
 

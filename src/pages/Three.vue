@@ -1,21 +1,28 @@
 <template>
   <div class="three">
-    <div id="three_demo"></div>
+    <div id="three_demo" v-on:click="LockMouse()"></div>
+    {{$root.input.mouseLock}}
+    {{$root.input.rotation}}
   </div>
 </template>
 
 <script>
   /* Modules */
   var THREE = require('three')
+  import MouseLock from '../modules/MouseLock'
 
   export default {
     name: 'three',
+    methods: {
+      LockMouse: function () {
+        MouseLock.lock()
+      }
+    },
     mounted: function () {
       var renderWidth = 1920
       var renderHeight = 1080
       var scene, camera, renderer
       let cameraRotation = 0
-      let cameraTilt = 0
 
       scene = new THREE.Scene()
       camera = new THREE.PerspectiveCamera(30, renderWidth / renderHeight, 1, 10000)
@@ -27,42 +34,6 @@
       renderer.setSize(renderWidth, renderHeight)
       renderer.setClearColor(0x000000)
       document.getElementById('three_demo').appendChild(renderer.domElement)
-
-      /* Pointer Lock asdf */
-      let canvas = document.createElement('canvas')
-      document.getElementById('three_demo').appendChild(canvas)
-      canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock
-      // document.exitPointerLock = document.exitPointerLock || document.mozExitPointerLock
-
-      renderer.domElement.onclick = function () {
-        canvas.requestPointerLock()
-        console.log('adsf')
-      }
-
-      document.addEventListener('pointerlockchange', lockChangeAlert, false)
-      document.addEventListener('mozpointerlockchange', lockChangeAlert, false)
-
-      function lockChangeAlert () {
-        if (document.pointerLockElement === canvas || document.mozPointerLockElement === canvas) {
-          console.log('The pointer lock status is now locked')
-          document.addEventListener('mousemove', updatePosition, false)
-        } else {
-          console.log('The pointer lock status is now unlocked')
-          document.removeEventListener('mousemove', updatePosition, false)
-        }
-      }
-      function updatePosition (e) {
-        console.log(e)
-        cameraRotation -= e.movementX / 200
-      }
-
-      document.addEventListener('pointerlockerror', lockError, false)
-      document.addEventListener('mozpointerlockerror', lockError, false)
-
-      function lockError (e) {
-        console.log(e)
-      }
-      /* End Pointer Lock */
 
       var material = []
       var geometry = []
@@ -98,28 +69,34 @@
       var animate = () => {
         window.requestAnimationFrame(animate)
         /* Rotate camera around camera point
-        camera.rotation.z = cameraRotation
-        camera.rotation.y = Math.sin(cameraRotation) * (Math.PI / 8)
-        camera.rotation.x = Math.cos(cameraRotation) * (Math.PI / 8)
+        camera.rotation.z = this.$root.input.rotation
+        camera.rotation.y = Math.sin(this.$root.input.rotation) * (Math.PI / 8)
+        camera.rotation.x = Math.cos(this.$root.input.rotation) * (Math.PI / 8)
         */
 
         /* User Input */
         if (this.$root.input.w) camera.position.z += 5
         if (this.$root.input.s) camera.position.z -= 5
-        if (this.$root.input.left) cameraRotation = (cameraRotation + 0.1) % (Math.PI * 2)
-        if (this.$root.input.right) cameraRotation = (cameraRotation - 0.1) % (Math.PI * 2)
+        if (this.$root.input.right) {
+          player.position.x -= 5 * Math.sin(this.$root.input.rotation)
+          player.position.y += 5 * Math.cos(this.$root.input.rotation)
+        }
+        if (this.$root.input.left) {
+          player.position.x += 5 * Math.sin(this.$root.input.rotation)
+          player.position.y -= 5 * Math.cos(this.$root.input.rotation)
+        }
         if (this.$root.input.up) {
-          player.position.y -= 5 * Math.sin(cameraRotation)
-          player.position.x -= 5 * Math.cos(cameraRotation)
+          player.position.y -= 5 * Math.sin(this.$root.input.rotation)
+          player.position.x -= 5 * Math.cos(this.$root.input.rotation)
         }
         if (this.$root.input.down) {
-          player.position.y += 5 * Math.sin(cameraRotation)
-          player.position.x += 5 * Math.cos(cameraRotation)
+          player.position.y += 5 * Math.sin(this.$root.input.rotation)
+          player.position.x += 5 * Math.cos(this.$root.input.rotation)
         }
 
         /* Rotate camera around player */
-        camera.position.x = player.position.x + (Math.cos(cameraRotation) * 1250)
-        camera.position.y = player.position.y + (Math.sin(cameraRotation) * 1250)
+        camera.position.x = player.position.x + (Math.cos(this.$root.input.rotation) * 1250)
+        camera.position.y = player.position.y + (Math.sin(this.$root.input.rotation) * 1250)
         camera.lookAt(player.position)
 
         /* Dytamic light */
